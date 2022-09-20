@@ -15,4 +15,6 @@ public interface UserService {
 
     List<Map> getUsers();
 
+    Map getUserContacts(String parameter);
+
 }

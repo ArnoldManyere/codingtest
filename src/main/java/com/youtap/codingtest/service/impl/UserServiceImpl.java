@@ -1,10 +1,12 @@
 package com.youtap.codingtest.service.impl;
 
 import com.youtap.codingtest.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -31,5 +33,27 @@ public class UserServiceImpl implements UserService {
         logger.info("Getting all users.");
         Map[] response = restTemplate.getForObject("https://jsonplaceholder.typicode.com/users", Map[].class);
         return Arrays.asList(response);
+    }
+
+
+    //This method is for searching for a user with ID or Username.
+    @Override
+    public Map getUserContacts(String parameter) {
+        logger.info("Get user contact details : " + parameter);
+        Map contactDetail = new HashMap();
+        try {
+            List<Map> users = getUsers();
+            Map userDetails = users.stream()
+                    .filter(user -> (parameter.equals(user.get("id").toString()) || parameter.equals(user.get("name"))))
+                    .findAny()
+                    .orElse(null);
+            contactDetail.put("id", userDetails.get("id").toString());
+            contactDetail.put("email", userDetails.get("email").toString());
+            contactDetail.put("phone", userDetails.get("phone").toString());
+            return contactDetail;
+        }catch (NullPointerException ex){
+            contactDetail.put("id", "-1");
+            return contactDetail;
+        }
     }
 }
