@@ -1,0 +1,35 @@
+{
+	"info": {
+		"_postman_id": "98412bdb-02f6-451f-9deb-11cec1ec4825",
+		"name": "Youtap",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6902976"
+	},
+	"item": [
+		{
+			"name": "youtaptest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9111/getusercontacts?parameter=Clementine Bauch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9111",
+					"path": [
+						"getusercontacts"
+					],
+					"query": [
+						{
+							"key": "parameter",
+							"value": "Clementine Bauch"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
