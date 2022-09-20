@@ -5,10 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -28,13 +25,16 @@ public class UserServiceImpl implements UserService {
     private RestTemplate restTemplate = new RestTemplate();
 
     //This method returns a list of users from the Third Party API.
-    @Override
     public List<Map> getUsers() {
-        logger.info("Getting all users.");
-        Map[] response = restTemplate.getForObject("https://jsonplaceholder.typicode.com/users", Map[].class);
-        return Arrays.asList(response);
+        try {
+            logger.info("Getting all users.");
+            Map[] response = restTemplate.getForObject("https://jsonplaceholder.typicode.com/users", Map[].class);
+            return Arrays.asList(response);
+        }catch (Exception ex){
+            logger.severe("Failed to get Users.");
+            return new ArrayList<>();
+        }
     }
-
 
     //This method is for searching for a user with ID or Username.
     @Override

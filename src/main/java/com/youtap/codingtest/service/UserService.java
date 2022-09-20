@@ -13,8 +13,6 @@ import java.util.Map;
  */
 public interface UserService {
 
-    List<Map> getUsers();
-
     Map getUserContacts(String parameter);
 
 }
