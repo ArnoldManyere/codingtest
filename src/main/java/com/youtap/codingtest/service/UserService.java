@@ -1,5 +1,6 @@
 package com.youtap.codingtest.service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,5 +12,7 @@ import java.util.Map;
  * Time: 11:45
  */
 public interface UserService {
+
+    List<Map> getUsers();
 
 }

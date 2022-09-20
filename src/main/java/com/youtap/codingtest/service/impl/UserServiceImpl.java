@@ -2,6 +2,12 @@ package com.youtap.codingtest.service.impl;
 
 import com.youtap.codingtest.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,4 +20,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    private static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
+
+    private RestTemplate restTemplate = new RestTemplate();
+
+    //This method returns a list of users from the Third Party API.
+    @Override
+    public List<Map> getUsers() {
+        logger.info("Getting all users.");
+        Map[] response = restTemplate.getForObject("https://jsonplaceholder.typicode.com/users", Map[].class);
+        return Arrays.asList(response);
+    }
 }
