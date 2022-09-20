@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService {
                     .filter(user -> (parameter.equals(user.get("id").toString()) || parameter.equals(user.get("name"))))
                     .findAny()
                     .orElse(null);
+
             contactDetail.put("id", userDetails.get("id").toString());
             contactDetail.put("email", userDetails.get("email").toString());
             contactDetail.put("phone", userDetails.get("phone").toString());
